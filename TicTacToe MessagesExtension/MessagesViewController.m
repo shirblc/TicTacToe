@@ -16,7 +16,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 #pragma mark - Conversation Handling
@@ -65,6 +64,32 @@
     // Called after the extension transitions to a new presentation style.
     
     // Use this method to finalize any behaviors associated with the change in presentation style.
+}
+
+- (IBAction)startNewGame:(id)sender {
+    MSMessageTemplateLayout *newMessageLayout = [[MSMessageTemplateLayout alloc] init];
+    newMessageLayout.caption = @"Want to play tic tac toe?";
+    
+    MSMessage *newMessage = [[MSMessage alloc] initWithSession:[[MSSession alloc] init]];
+    newMessage.layout = newMessageLayout;
+    
+    [self.activeConversation insertMessage:newMessage completionHandler:^(NSError * _Nullable error) {
+        
+        if(error) {
+            [self showErrorAlertWithError:error.localizedDescription];
+        }
+    }];
+}
+
+-(void)showErrorAlertWithError: (NSString*)errorText {
+    UIAlertController *errorAlert = [[UIAlertController alloc] init];
+    errorAlert.title = @"An error occurred";
+    errorAlert.message = [[NSString alloc] initWithFormat:@"An error occurred: %@", errorText];
+    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:1 handler:^(UIAlertAction * _Nonnull action) {
+        [self dismiss];
+    }];
+    [errorAlert addAction: closeAction];
+    [self presentViewController:errorAlert animated:true completion:nil];
 }
 
 @end
