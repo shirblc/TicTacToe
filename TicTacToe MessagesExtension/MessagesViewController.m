@@ -7,6 +7,7 @@
 
 #import "MessagesViewController.h"
 #import "AcceptGameViewController.h"
+#import "StartGameViewController.h"
 
 
 @interface MessagesViewController ()
@@ -62,38 +63,17 @@
 }
 
 -(void)didTransitionToPresentationStyle:(MSMessagesAppPresentationStyle)presentationStyle {
-    if(presentationStyle == MSMessagesAppPresentationStyleExpanded) {
+    if(presentationStyle == MSMessagesAppPresentationStyleCompact) {
+        StartGameViewController *startGameVC = [self.storyboard instantiateViewControllerWithIdentifier:@"startGameVC"];
+        [self addChildViewController:startGameVC];
+        [self.view addSubview:startGameVC.view];
+        startGameVC.view.bounds = self.view.bounds;
+    } else if(presentationStyle == MSMessagesAppPresentationStyleExpanded) {
         AcceptGameViewController *acceptGameVC = [self.storyboard instantiateViewControllerWithIdentifier:@"acceptGameVC"];
         [self addChildViewController:acceptGameVC];
         [self.view addSubview:acceptGameVC.view];
         acceptGameVC.view.bounds = self.view.bounds;
     }
-}
-
-- (IBAction)startNewGame:(id)sender {
-    MSMessageTemplateLayout *newMessageLayout = [[MSMessageTemplateLayout alloc] init];
-    newMessageLayout.caption = @"Want to play tic tac toe?";
-    
-    MSMessage *newMessage = [[MSMessage alloc] initWithSession:[[MSSession alloc] init]];
-    newMessage.layout = newMessageLayout;
-    
-    [self.activeConversation insertMessage:newMessage completionHandler:^(NSError * _Nullable error) {
-        
-        if(error) {
-            [self showErrorAlertWithError:error.localizedDescription];
-        }
-    }];
-}
-
--(void)showErrorAlertWithError: (NSString*)errorText {
-    UIAlertController *errorAlert = [[UIAlertController alloc] init];
-    errorAlert.title = @"An error occurred";
-    errorAlert.message = [[NSString alloc] initWithFormat:@"An error occurred: %@", errorText];
-    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:1 handler:^(UIAlertAction * _Nonnull action) {
-        [self dismiss];
-    }];
-    [errorAlert addAction: closeAction];
-    [self presentViewController:errorAlert animated:true completion:nil];
 }
 
 @end
