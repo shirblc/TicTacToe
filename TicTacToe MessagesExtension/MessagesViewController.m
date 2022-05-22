@@ -8,6 +8,7 @@
 #import "MessagesViewController.h"
 #import "AcceptGameViewController.h"
 #import "StartGameViewController.h"
+#import "Delegates/TicTacToeViewControllerDelegate.h"
 
 
 @interface MessagesViewController ()
@@ -68,12 +69,35 @@
         [self addChildViewController:startGameVC];
         [self.view addSubview:startGameVC.view];
         startGameVC.view.bounds = self.view.bounds;
+        startGameVC.delegate = self;
     } else if(presentationStyle == MSMessagesAppPresentationStyleExpanded) {
         AcceptGameViewController *acceptGameVC = [self.storyboard instantiateViewControllerWithIdentifier:@"acceptGameVC"];
         [self addChildViewController:acceptGameVC];
         [self.view addSubview:acceptGameVC.view];
         acceptGameVC.view.bounds = self.view.bounds;
+        acceptGameVC.delegate = self;
     }
+}
+
+# pragma mark - Sending Messages
+-(void)sendMessageWithMessage:(MSMessage*) message {
+    [self.activeConversation insertMessage:message completionHandler:^(NSError * _Nullable error) {
+        
+        if(error) {
+            [self showErrorAlertWithError:error.localizedDescription];
+        }
+    }];
+}
+
+-(void)showErrorAlertWithError: (NSString*)errorText {
+    UIAlertController *errorAlert = [[UIAlertController alloc] init];
+    errorAlert.title = @"An error occurred";
+    errorAlert.message = [[NSString alloc] initWithFormat:@"An error occurred: %@", errorText];
+    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:1 handler:^(UIAlertAction * _Nonnull action) {
+        [self dismiss];
+    }];
+    [errorAlert addAction: closeAction];
+    [self presentViewController:errorAlert animated:true completion:nil];
 }
 
 @end

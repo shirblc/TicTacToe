@@ -6,6 +6,7 @@
 //
 
 #import "StartGameViewController.h"
+#import "Delegates/TicTacToeViewControllerDelegate.h"
 
 @interface StartGameViewController ()
 
@@ -24,23 +25,7 @@
     MSMessage *newMessage = [[MSMessage alloc] initWithSession:[[MSSession alloc] init]];
     newMessage.layout = newMessageLayout;
     
-    [self.activeConversation insertMessage:newMessage completionHandler:^(NSError * _Nullable error) {
-        
-        if(error) {
-            [self showErrorAlertWithError:error.localizedDescription];
-        }
-    }];
-}
-
--(void)showErrorAlertWithError: (NSString*)errorText {
-    UIAlertController *errorAlert = [[UIAlertController alloc] init];
-    errorAlert.title = @"An error occurred";
-    errorAlert.message = [[NSString alloc] initWithFormat:@"An error occurred: %@", errorText];
-    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:1 handler:^(UIAlertAction * _Nonnull action) {
-        [self dismiss];
-    }];
-    [errorAlert addAction: closeAction];
-    [self presentViewController:errorAlert animated:true completion:nil];
+    [self.delegate sendMessageWithMessage:newMessage];
 }
 
 @end

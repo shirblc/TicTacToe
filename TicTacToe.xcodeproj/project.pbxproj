@@ -42,6 +42,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0145D9FA283AB20700446808 /* TicTacToeViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TicTacToeViewControllerDelegate.h; sourceTree = "<group>"; };
 		018C3436283923EF00B054CA /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		018C3439283923FA00B054CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		018C343F283923FC00B054CA /* TicTacToe MessagesExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "TicTacToe MessagesExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +70,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0145D9F8283AB1BE00446808 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				0145D9FA283AB20700446808 /* TicTacToeViewControllerDelegate.h */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		0145D9F9283AB1C700446808 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
 		018C342F283923EE00B054CA = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +123,8 @@
 		018C3446283923FC00B054CA /* TicTacToe MessagesExtension */ = {
 			isa = PBXGroup;
 			children = (
+				0145D9F9283AB1C700446808 /* View Controllers */,
+				0145D9F8283AB1BE00446808 /* Delegates */,
 				018C3447283923FC00B054CA /* MessagesViewController.h */,
 				018C3448283923FC00B054CA /* MessagesViewController.m */,
 				018C344A283923FC00B054CA /* MainInterface.storyboard */,

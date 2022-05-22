@@ -6,10 +6,13 @@
 //
 
 #import <Messages/Messages.h>
+#import "Delegates/TicTacToeViewControllerDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AcceptGameViewController : MSMessagesAppViewController
+
+@property (nonatomic) MSMessagesAppViewController <TicTacToeViewControllerDelegate> *delegate;
 
 @end
 

@@ -6,7 +6,8 @@
 //
 
 #import <Messages/Messages.h>
+#import "Delegates/TicTacToeViewControllerDelegate.h"
 
-@interface MessagesViewController : MSMessagesAppViewController
+@interface MessagesViewController : MSMessagesAppViewController <TicTacToeViewControllerDelegate>
 
 @end
