@@ -1,16 +1,16 @@
 //
-//  AcceptGameViewController.h
+//  StartGameViewController.h
 //  TicTacToe MessagesExtension
 //
-//  Created by Shir Bar Lev on 21/05/2022.
+//  Created by Shir Bar Lev on 22/05/2022.
 //
 
 #import <Messages/Messages.h>
-#import "Delegates/TicTacToeViewControllerDelegate.h"
+#import "../Delegates/TicTacToeViewControllerDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AcceptGameViewController : MSMessagesAppViewController
+@interface StartGameViewController : MSMessagesAppViewController
 
 @property (nonatomic) MSMessagesAppViewController <TicTacToeViewControllerDelegate> *delegate;
 

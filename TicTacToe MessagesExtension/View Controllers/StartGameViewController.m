@@ -6,7 +6,7 @@
 //
 
 #import "StartGameViewController.h"
-#import "Delegates/TicTacToeViewControllerDelegate.h"
+#import "../Delegates/TicTacToeViewControllerDelegate.h"
 
 @interface StartGameViewController ()
 

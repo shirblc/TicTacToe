@@ -6,8 +6,8 @@
 //
 
 #import "MessagesViewController.h"
-#import "AcceptGameViewController.h"
-#import "StartGameViewController.h"
+#import "View Controllers/AcceptGameViewController.h"
+#import "View Controllers/StartGameViewController.h"
 #import "Delegates/TicTacToeViewControllerDelegate.h"
 
 

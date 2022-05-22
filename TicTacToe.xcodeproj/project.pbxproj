@@ -81,6 +81,10 @@
 		0145D9F9283AB1C700446808 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				018C345C28396FF900B054CA /* AcceptGameViewController.h */,
+				018C345D28396FF900B054CA /* AcceptGameViewController.m */,
+				01E4A64B283AAAA70048785E /* StartGameViewController.h */,
+				01E4A64C283AAAA80048785E /* StartGameViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -130,10 +134,6 @@
 				018C344A283923FC00B054CA /* MainInterface.storyboard */,
 				018C344D2839240000B054CA /* Assets.xcassets */,
 				018C344F2839240000B054CA /* Info.plist */,
-				018C345C28396FF900B054CA /* AcceptGameViewController.h */,
-				018C345D28396FF900B054CA /* AcceptGameViewController.m */,
-				01E4A64B283AAAA70048785E /* StartGameViewController.h */,
-				01E4A64C283AAAA80048785E /* StartGameViewController.m */,
 			);
 			path = "TicTacToe MessagesExtension";
 			sourceTree = "<group>";
