@@ -6,6 +6,7 @@
 //
 
 #import "MessagesViewController.h"
+#import "AcceptGameViewController.h"
 
 
 @interface MessagesViewController ()
@@ -61,9 +62,12 @@
 }
 
 -(void)didTransitionToPresentationStyle:(MSMessagesAppPresentationStyle)presentationStyle {
-    // Called after the extension transitions to a new presentation style.
-    
-    // Use this method to finalize any behaviors associated with the change in presentation style.
+    if(presentationStyle == MSMessagesAppPresentationStyleExpanded) {
+        AcceptGameViewController *acceptGameVC = [self.storyboard instantiateViewControllerWithIdentifier:@"acceptGameVC"];
+        [self addChildViewController:acceptGameVC];
+        [self.view addSubview:acceptGameVC.view];
+        acceptGameVC.view.bounds = self.view.bounds;
+    }
 }
 
 - (IBAction)startNewGame:(id)sender {
