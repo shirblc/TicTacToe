@@ -10,4 +10,7 @@
 
 @interface MessagesViewController : MSMessagesAppViewController <TicTacToeViewControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet UILabel *appTitle;
+@property (weak, nonatomic) IBOutlet UIButton *startButton;
+
 @end

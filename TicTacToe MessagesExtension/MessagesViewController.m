@@ -7,7 +7,6 @@
 
 #import "MessagesViewController.h"
 #import "View Controllers/AcceptGameViewController.h"
-#import "View Controllers/StartGameViewController.h"
 #import "Delegates/TicTacToeViewControllerDelegate.h"
 
 
@@ -25,9 +24,9 @@
 
 -(void)didBecomeActiveWithConversation:(MSConversation *)conversation {
     // Called when the extension is about to move from the inactive to active state.
-    // This will happen when the extension is about to present UI.
-    
-    // Use this method to configure the extension and restore previously stored state.
+    [super didBecomeActiveWithConversation:conversation];
+    [self presentViewToUserWithStyle:self.presentationStyle];
+    // TODO: add check for existing score/preferences
 }
 
 -(void)willResignActiveWithConversation:(MSConversation *)conversation {
@@ -64,19 +63,34 @@
 }
 
 -(void)didTransitionToPresentationStyle:(MSMessagesAppPresentationStyle)presentationStyle {
+    [self presentViewToUserWithStyle:presentationStyle];
+}
+
+# pragma mark - Application Views
+-(void)presentViewToUserWithStyle:(MSMessagesAppPresentationStyle)presentationStyle {
+    // TODO: Write it depending on whether the user clicked a message, not depending on style
     if(presentationStyle == MSMessagesAppPresentationStyleCompact) {
-        StartGameViewController *startGameVC = [self.storyboard instantiateViewControllerWithIdentifier:@"startGameVC"];
-        [self addChildViewController:startGameVC];
-        [self.view addSubview:startGameVC.view];
-        startGameVC.view.bounds = self.view.bounds;
-        startGameVC.delegate = self;
+        [self.appTitle setHidden:false];
+        [self.startButton setHidden:false];
     } else if(presentationStyle == MSMessagesAppPresentationStyleExpanded) {
+        [self.appTitle setHidden:true];
+        [self.startButton setHidden:true];
         AcceptGameViewController *acceptGameVC = [self.storyboard instantiateViewControllerWithIdentifier:@"acceptGameVC"];
         [self addChildViewController:acceptGameVC];
         [self.view addSubview:acceptGameVC.view];
         acceptGameVC.view.bounds = self.view.bounds;
         acceptGameVC.delegate = self;
     }
+}
+
+- (IBAction)startNewGame:(id)sender {
+    MSMessageTemplateLayout *newMessageLayout = [[MSMessageTemplateLayout alloc] init];
+    newMessageLayout.caption = @"Want to play tic tac toe?";
+    
+    MSMessage *newMessage = [[MSMessage alloc] initWithSession:[[MSSession alloc] init]];
+    newMessage.layout = newMessageLayout;
+    
+    [self sendMessageWithMessage:newMessage];
 }
 
 # pragma mark - Sending Messages
