@@ -14,6 +14,7 @@
 		018C344C283923FC00B054CA /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 018C344A283923FC00B054CA /* MainInterface.storyboard */; };
 		018C344E2839240000B054CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 018C344D2839240000B054CA /* Assets.xcassets */; };
 		018C345E28396FF900B054CA /* AcceptGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 018C345D28396FF900B054CA /* AcceptGameViewController.m */; };
+		01B811982840A1B7006720E9 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B811972840A1B6006720E9 /* GameViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		018C344F2839240000B054CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		018C345C28396FF900B054CA /* AcceptGameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AcceptGameViewController.h; sourceTree = "<group>"; };
 		018C345D28396FF900B054CA /* AcceptGameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AcceptGameViewController.m; sourceTree = "<group>"; };
+		01B811962840A1B6006720E9 /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		01B811972840A1B6006720E9 /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +83,8 @@
 			children = (
 				018C345C28396FF900B054CA /* AcceptGameViewController.h */,
 				018C345D28396FF900B054CA /* AcceptGameViewController.m */,
+				01B811962840A1B6006720E9 /* GameViewController.h */,
+				01B811972840A1B6006720E9 /* GameViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -231,6 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01B811982840A1B7006720E9 /* GameViewController.m in Sources */,
 				018C345E28396FF900B054CA /* AcceptGameViewController.m in Sources */,
 				018C3449283923FC00B054CA /* MessagesViewController.m in Sources */,
 			);
