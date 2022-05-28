@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol TicTacToeViewControllerDelegate <NSObject>
 
 -(void)sendMessageWithMessage:(MSMessage*) message;
+-(NSURLComponents*)generateUrlWithQueryParams:(NSDictionary<NSString*, NSString*> *)params;
 
 @end
 

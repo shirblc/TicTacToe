@@ -94,6 +94,17 @@
 }
 
 # pragma mark - Sending Messages
+-(NSURLComponents*)generateUrlWithQueryParams:(NSDictionary<NSString*, NSString*> *)params {
+    NSURLComponents *userResponseUrl = [[NSURLComponents alloc] init];
+    NSMutableArray *queryItems = [[NSMutableArray alloc] init];
+    for (NSString* key in params) {
+        [queryItems addObject:[[NSURLQueryItem alloc] initWithName:key value:params[key]]];
+    }
+    userResponseUrl.queryItems = queryItems;
+    
+    return userResponseUrl;
+}
+
 -(void)sendMessageWithMessage:(MSMessage*) message {
     [self.activeConversation insertMessage:message completionHandler:^(NSError * _Nullable error) {
         

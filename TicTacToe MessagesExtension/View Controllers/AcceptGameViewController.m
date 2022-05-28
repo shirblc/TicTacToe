@@ -29,9 +29,10 @@
 
 - (MSMessage*)createResponseMessageWithValue:(NSString*) userResponseValue
                            withMessage:(NSString*) userMessage {
-    NSURLComponents *userResponseUrl = [[NSURLComponents alloc] init];
-    NSMutableArray *queryItems = [[NSMutableArray alloc] initWithObjects:[[NSURLQueryItem alloc] initWithName:@"shouldStartGame" value:userResponseValue], nil];
-    userResponseUrl.queryItems = queryItems;
+    NSDictionary<NSString*, NSString*> *params = @{
+        @"shouldStartGame": userResponseValue
+    };
+    NSURLComponents *userResponseUrl = [self.delegate generateUrlWithQueryParams:params];
     
     MSMessageTemplateLayout *newMessageLayout = [[MSMessageTemplateLayout alloc] init];
     newMessageLayout.caption = userMessage;
