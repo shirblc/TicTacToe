@@ -7,6 +7,7 @@
 
 #import "MessagesViewController.h"
 #import "View Controllers/AcceptGameViewController.h"
+#import "View Controllers/GameViewController.h"
 #import "Delegates/TicTacToeViewControllerDelegate.h"
 
 
@@ -84,6 +85,20 @@
             [self.view addSubview:acceptGameVC.view];
             acceptGameVC.view.bounds = self.view.bounds;
             acceptGameVC.delegate = self;
+        // If the user was shown the accept-game screen
+        } else if([queryParams[0].name isEqual:@"shouldStartGame"]) {
+            // If the user accepted, show the game view
+            if([queryParams[0].value isEqual:@"true"]) {
+                GameViewController *gameView = [self.storyboard instantiateViewControllerWithIdentifier:@"gameVC"];
+                [self addChildViewController:gameView];
+                [self.view addSubview:gameView.view];
+                gameView.view.bounds = self.view.bounds;
+                gameView.delegate = self;
+            // Otherwise allow the user to start over
+            } else {
+                [self.appTitle setHidden:false];
+                [self.startButton setHidden:false];
+            }
         }
     } else {
         [self.appTitle setHidden:false];
