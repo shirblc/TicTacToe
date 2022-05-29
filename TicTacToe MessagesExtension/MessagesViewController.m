@@ -25,7 +25,7 @@
 -(void)didBecomeActiveWithConversation:(MSConversation *)conversation {
     // Called when the extension is about to move from the inactive to active state.
     [super didBecomeActiveWithConversation:conversation];
-    [self presentViewToUserWithStyle:self.presentationStyle];
+    [self presentViewToUserWithMessage: conversation.selectedMessage];
     // TODO: add check for existing score/preferences
 }
 
@@ -63,23 +63,31 @@
 }
 
 -(void)didTransitionToPresentationStyle:(MSMessagesAppPresentationStyle)presentationStyle {
-    [self presentViewToUserWithStyle:presentationStyle];
-}
+    // Called after the extension transitions to a new presentation style.
+    
+     // Use this method to finalize any behaviors associated with the change in presentation style.
+ }
 
 # pragma mark - Application Views
--(void)presentViewToUserWithStyle:(MSMessagesAppPresentationStyle)presentationStyle {
-    // TODO: Write it depending on whether the user clicked a message, not depending on style
-    if(presentationStyle == MSMessagesAppPresentationStyleCompact) {
-        [self.appTitle setHidden:false];
-        [self.startButton setHidden:false];
-    } else if(presentationStyle == MSMessagesAppPresentationStyleExpanded) {
+-(void)presentViewToUserWithMessage:(MSMessage *)message {
+    if(message && message.URL) {
         [self.appTitle setHidden:true];
         [self.startButton setHidden:true];
-        AcceptGameViewController *acceptGameVC = [self.storyboard instantiateViewControllerWithIdentifier:@"acceptGameVC"];
-        [self addChildViewController:acceptGameVC];
-        [self.view addSubview:acceptGameVC.view];
-        acceptGameVC.view.bounds = self.view.bounds;
-        acceptGameVC.delegate = self;
+        
+        NSURLComponents *urlComponents = [[NSURLComponents alloc] initWithURL:message.URL resolvingAgainstBaseURL:false];
+        NSArray<NSURLQueryItem *> *queryParams = urlComponents.queryItems;
+        
+        // If we're in accept-game state
+        if([queryParams[0].name isEqual: @"suggestGame"]) {
+            AcceptGameViewController *acceptGameVC = [self.storyboard instantiateViewControllerWithIdentifier:@"acceptGameVC"];
+            [self addChildViewController:acceptGameVC];
+            [self.view addSubview:acceptGameVC.view];
+            acceptGameVC.view.bounds = self.view.bounds;
+            acceptGameVC.delegate = self;
+        }
+    } else {
+        [self.appTitle setHidden:false];
+        [self.startButton setHidden:false];
     }
 }
 
