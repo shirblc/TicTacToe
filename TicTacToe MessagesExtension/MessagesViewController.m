@@ -87,8 +87,13 @@
     MSMessageTemplateLayout *newMessageLayout = [[MSMessageTemplateLayout alloc] init];
     newMessageLayout.caption = @"Want to play tic tac toe?";
     
+    NSURLComponents *url = [self generateUrlWithQueryParams:@{
+        @"suggestGame": @"true"
+    }];
+    
     MSMessage *newMessage = [[MSMessage alloc] initWithSession:[[MSSession alloc] init]];
     newMessage.layout = newMessageLayout;
+    newMessage.URL = url.URL;
     
     [self sendMessageWithMessage:newMessage];
 }
